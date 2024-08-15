@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Pull Repo') {
             steps {
-              git https://github.com/MohamedGamal10/DockerProject.git
+              git url: 'https://github.com/MohamedGamal10/DockerProject.git'
             }
         }
 
@@ -17,5 +17,4 @@ pipeline {
         }
     }
   }
-}
 
