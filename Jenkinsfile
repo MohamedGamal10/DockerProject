@@ -21,10 +21,9 @@ pipeline {
                 script {
                      withCredentials([usernamePassword(credentialsId: 'docker_hub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) 
                     {
-                        sh 
-                        '''
-                            docker login -u "$USERNAME" -p "$PASSWORD"
-                            docker push "$USERNAME"/my-react-app:${env.BUILD_NUMBER}
+                        sh '''
+                        docker login -u "$USERNAME" -p "$PASSWORD"
+                        docker push "$USERNAME"/my-react-app:${env.BUILD_NUMBER}
                         '''   
                     }
                 }
