@@ -15,7 +15,7 @@ pipeline {
                     {
                         sh '''
                         docker build -t ${USERNAME}/my-react-app:${env.BUILD_NUMBER} .
-                        echo "$PASSWORD" | docker login -u "${USERNAME} --password-stdin
+                        echo ${PASSWORD} | docker login -u "${USERNAME} --password-stdin
                         docker push ${USERNAME}/my-react-app:${env.BUILD_NUMBER}
                         '''   
                     }
