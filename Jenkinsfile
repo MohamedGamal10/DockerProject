@@ -11,7 +11,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                  sh " echo ${env.BUILD_NUMBER}"
+                  sh "docker build -t my-react-app:${env.BUILD_NUMBER} ."
                 }
             }
         }
