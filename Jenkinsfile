@@ -8,22 +8,15 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                script {
-                  sh "docker build -t my-react-app:${env.BUILD_NUMBER} ."
-                }
-            }
-        }
-
         stage('Push Docker Image') {
             steps {
                 script {
                      withCredentials([usernamePassword(credentialsId: 'docker_hub', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) 
                     {
                         sh '''
+                        docker build -t "$USERNAME"/my-react-app:${env.BUILD_NUMBER} .
                         echo "$PASSWORD" | docker login -u "$USERNAME" --password-stdin
-                        docker push "$USERNAME"/my-react-app:${BUILD_NUMBER}
+                        docker push "$USERNAME"/my-react-app:${env.BUILD_NUMBER}
                         '''   
                     }
                 }
